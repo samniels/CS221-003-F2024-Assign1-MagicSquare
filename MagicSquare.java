@@ -1,0 +1,3 @@
+
+
+// Contains magic square class
