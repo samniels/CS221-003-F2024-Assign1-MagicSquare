@@ -1,3 +1,9 @@
+// Driver class for Magic Square
+
+public static void main() {
 
 
-// Driver for Magic Square
+
+
+
+}
