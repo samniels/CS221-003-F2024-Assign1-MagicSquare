@@ -15,23 +15,24 @@
     - magicNumber - int - Sum of vals in row/col/diag 
     - matrixOrig - 2D array of ints
     - matrixCopy - 2D array of ints, taken from original
-- Constructor 1
+- [] MagicSquare constructor 1
     - Read from file and create a matrix
-        - Private method readMatrix
-- Constructor 2
+    - [] Private method readMatrix
+- [x] MagicSquare constructor 2
     - Takes a filename and dimension n to create a matrix
-        - Private method writeMatrix
-- isMagicSquare
+    - [x] Private method writeMatrix
+- [] isMagicSquare
+    - Do all ints 1 through n^2 appear in matrix?
     - Validate if the matrix (Copy?) from the file is a magic square
         - Get val of first row, compare to rest
         - for row in rows, for col in cols, if sum of col vals in row are the same, continue
         - for col in cols, for row in rows, if sum of row vals in col are the same, continue
-        - (naiively) 
+        - Diagonals (naiively) 
     - If valid, return true, else false
-- getMatrix
+- [] getMatrix
     - For row in rows, col in cols, val[row][col] of matrixCopy = val[row][col] of matrixOrig
     - Return matrixCopy
-- toString
+- [] toString
     - String str
     - If isMagicSquare == true,
         - str += "The matrix\n"
@@ -50,3 +51,7 @@
 - If input is -create
     - Create matrix
     - matrix.toString to test
+
+
+# References
+CS 121 - Activity 7.2 - Soda Survey
