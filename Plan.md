@@ -29,7 +29,7 @@
         - for col in cols, for row in rows, if sum of row vals in col are the same, continue
         - Diagonals (naiively) 
     - If valid, return true, else false
-- [] getMatrix
+- [x] getMatrix
     - For row in rows, col in cols, val[row][col] of matrixCopy = val[row][col] of matrixOrig
     - Return matrixCopy
 - [] toString

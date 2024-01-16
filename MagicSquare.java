@@ -15,10 +15,9 @@ import java.util.Scanner;
 
 public class MagicSquare implements MagicSquareInterface {
 
-    private int numsides;
+    private int dim;
     private int magicNum;
     private int[][] matrixOrig;
-    private boolean isMagicSquare;
 
     /**
      * Constructor for MagicSquare read from file only
@@ -28,7 +27,7 @@ public class MagicSquare implements MagicSquareInterface {
      */
     public MagicSquare(String filename) {
         matrixOrig = readMatrix(filename);
-        isMagicSquare = false;
+        dim = matrixOrig.length;
     }
 
     /**
@@ -38,17 +37,18 @@ public class MagicSquare implements MagicSquareInterface {
      * @param filename
      * @param dim
      */
-    public MagicSquare(String filename, int dim) {
-        int n = dim;
-        matrixOrig = new int[n][n];
-        int row = n - 1;
-        int col = n / 2;
+    public MagicSquare(String filename, int n) {
+        dim = n; // TODO - Verify odd dimension is entered
+        matrixOrig = new int[dim][dim];
+
+        int row = dim - 1;
+        int col = dim / 2;
 
         int oldRow;
         int oldCol;
 
         // Create matrix - fill with numbers 1 through n^2, without repeats
-        for (int i = 1; i < Math.pow(n, 2) + 1; i++) {
+        for (int i = 1; i < (dim * dim) + 1; i++) {
             matrixOrig[row][col] = i;
             oldRow = row;
             oldCol = col;
@@ -56,10 +56,10 @@ public class MagicSquare implements MagicSquareInterface {
             col++;
 
             // Check if number is already in matrix
-            if (row == n) {
+            if (row == dim) {
                 row = 0;
             }
-            if (col == n) {
+            if (col == dim) {
                 col = 0;
             }
 
@@ -91,7 +91,7 @@ public class MagicSquare implements MagicSquareInterface {
             Scanner lineScan = new Scanner(line);
 
             // Read first line (dimension only)
-            int dim = lineScan.nextInt();
+            dim = lineScan.nextInt();
             matrix = new int[dim][dim];
 
             // Read remaining lines of file
@@ -120,21 +120,20 @@ public class MagicSquare implements MagicSquareInterface {
      * @param filename
      */
     private void writeMatrix(int[][] matrix, String filename) {
-        int n = matrix.length;
+        int dim = matrix.length;
 
         File file = new File(filename);
         try {
             PrintWriter outFile = new PrintWriter(new FileWriter(file));
 
-            outFile.println(n);
+            outFile.println(dim);
 
-            for (int r = 0; r < n; r++) {
-                for (int c = 0; c < n; c++) {
-                    outFile.print(matrixOrig[r][c] + " ");
+            for (int row = 0; row < dim; row++) {
+                for (int col = 0; col < dim; col++) {
+                    outFile.print(matrixOrig[row][col] + " ");
                 }
                 outFile.println();
             }
-
             outFile.close();
         } catch (IOException o) {
             System.out.println("Unable to print to: " + filename);
@@ -148,11 +147,16 @@ public class MagicSquare implements MagicSquareInterface {
      * 
      * @return true if the matrix is a magic square, otherwise false
      */
-    // TODO
+    // TODO Fix
     @Override
     public boolean isMagicSquare() {
         int dim = matrixOrig.length;
         int magicNum = dim * (dim * dim + 1) / 2;
+        int sum = 0;
+
+        for (int row = 0; row < dim; row++) {
+            sum += matrixOrig[row][colIndex];
+
 
         for (int row = 0; row < dim; row++) {
             for (int col = 0; col < dim; col++) {
@@ -190,9 +194,19 @@ public class MagicSquare implements MagicSquareInterface {
         String str = "";
         str += "The matrix\n";
 
-        if (isMagicSquare() == true) {
-
+        for (int row = 0; row < dim; row++) {
+            for (int col = 0; col < dim; col++) {
+                str += matrixOrig[row][col] + " ";
+            }
+            str += "\n";
         }
 
+        if (isMagicSquare() == true) {
+            str += "is a magic square\n";
+        } else {
+            str += "is not a magic square\n";
+        }
+
+        return str;
     }
 }
