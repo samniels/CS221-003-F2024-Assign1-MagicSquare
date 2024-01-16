@@ -151,8 +151,15 @@ public class MagicSquare implements MagicSquareInterface {
     // TODO
     @Override
     public boolean isMagicSquare() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isMagicSquare'");
+        int dim = matrixOrig.length;
+        int magicNum = dim * (dim * dim + 1) / 2;
+
+        for (int row = 0; row < dim; row++) {
+            for (int col = 0; col < dim; col++) {
+                // sum of row - see sodasurvey
+
+            }
+        }
     }
 
     /**

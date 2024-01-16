@@ -13,5 +13,7 @@ public class MagicSquareDriver {
         // MagicSquare magicSquare = new MagicSquare("test.txt");
         MagicSquare magicSquare = new MagicSquare("test1.txt", 3);
 
+        // TODO Verify that input dimension is odd
+
     }
 }
